@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Monitoring Emisi Insinerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">
+          <img src="/logo.png" alt="Logo">
+        </div>
+        <div class="sidebar-brand-text">
+          <h1>CEMS</h1>
+          <span>Emission Monitor</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-label">Menu</div>
+        <a href="/" class="sidebar-item active"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+        <a href="/report" class="sidebar-item"><i data-lucide="file-bar-chart"></i> Report</a>
+        <a href="/about" class="sidebar-item"><i data-lucide="info"></i> Tentang Insinerator</a>
+        <a href="/contact" class="sidebar-item"><i data-lucide="phone"></i> Contact</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="sidebar-guide-btn" id="sidebarGuideBtn">
+          <i data-lucide="help-circle"></i> Panduan Penggunaan
+        </button>
+        <div class="sidebar-footer-text">CEMS v2.1<br>PP 22/2021 &middot; PermenLHK 70/2016</div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <main class="main">
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-toggle" onclick="toggleSidebar()">
+          <i data-lucide="menu" style="width:18px;height:18px;color:var(--neutral-700)"></i>
+        </button>
+        <div>
+          <h1 class="header-title">Dashboard Monitoring Emisi Insinerator</h1>
+          <p class="header-sub">Update real-time setiap 1 menit</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="status-pill"><div class="status-dot"></div><span>Memuat...</span></div>
+        <div class="clock-block"><div class="clock" id="clock">--:--:--</div><div class="date-info" id="dateInfo">&nbsp;</div></div>
+        <img src="/logo1.png" alt="Logo" class="header-logo" fetchpriority="high" width="120" height="40">
+      </div>
+    </header>
+    <div class="page dashboard-page active">
+      <div class="compliance-banner safe">
+        <div class="compliance-banner-icon"><i data-lucide="shield-check" style="width:13px;height:13px;color:white"></i></div>
+        <div class="compliance-banner-text"><strong>Memuat status...</strong></div>
+      </div>
+      <span>Tren Grafik Real Time</span>
+      <div class="dashboard-body">
+        <div class="left-col">
+          <div class="params-grid">
+            <div class="param-card">
+              <div class="param-top"><span class="param-name">Total Partikulat (PM)</span><span class="param-pct">0%</span></div>
+              <div class="param-value">&mdash; <span class="param-unit">mg/Nm&sup3;</span></div>
+              <div class="param-bottom"><span class="param-limit">Baku Mutu: 120 mg/Nm&sup3;</span><div class="param-bar"><div class="param-bar-fill" style="width:0%"></div></div></div>
+            </div>
+            <div class="param-card">
+              <div class="param-top"><span class="param-name">SO&#8322;</span><span class="param-pct">0%</span></div>
+              <div class="param-value">&mdash; <span class="param-unit">mg/Nm&sup3;</span></div>
+              <div class="param-ppm">&mdash; ppm</div>
+              <div class="param-bottom"><span class="param-limit">Baku Mutu: 210 mg/Nm&sup3;</span><div class="param-bar"><div class="param-bar-fill" style="width:0%"></div></div></div>
+            </div>
+            <div class="param-card">
+              <div class="param-top"><span class="param-name">NO&#8339;</span><span class="param-pct">0%</span></div>
+              <div class="param-value">&mdash; <span class="param-unit">mg/Nm&sup3;</span></div>
+              <div class="param-ppm">&mdash; ppm</div>
+              <div class="param-bottom"><span class="param-limit">Baku Mutu: 470 mg/Nm&sup3;</span><div class="param-bar"><div class="param-bar-fill" style="width:0%"></div></div></div>
+            </div>
+            <div class="param-card">
+              <div class="param-top"><span class="param-name">CO</span><span class="param-pct">0%</span></div>
+              <div class="param-value">&mdash; <span class="param-unit">mg/Nm&sup3;</span></div>
+              <div class="param-ppm">&mdash; ppm</div>
+              <div class="param-bottom"><span class="param-limit">Baku Mutu: 625 mg/Nm&sup3;</span><div class="param-bar"><div class="param-bar-fill" style="width:0%"></div></div></div>
+            </div>
+          </div>
+          <div class="alert-panel-split">
+            <div class="alert-panel">
+              <div class="alert-panel-title">Alert Terakhir</div>
+              <div class="alert-list">
+                <div class="alert-row" style="background:var(--neutral-100);color:var(--neutral-600)"><span class="alert-row-time">--:--</span><span class="alert-row-msg">Menunggu data...</span></div>
+              </div>
+            </div>
+            <div class="alert-panel">
+              <div class="alert-panel-title">Akumulasi Pelanggaran</div>
+              <div class="accum-list" id="accumList">
+                <div class="accum-row"><span class="accum-name">PM</span><span class="accum-count">0&times;</span></div>
+                <div class="accum-row"><span class="accum-name">SO&#8322;</span><span class="accum-count">0&times;</span></div>
+                <div class="accum-row"><span class="accum-name">NO&#8339;</span><span class="accum-count">0&times;</span></div>
+                <div class="accum-row"><span class="accum-name">CO</span><span class="accum-count">0&times;</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gchart-grid">
+          <div class="gchart-card"><div class="gchart-header"><span class="gchart-title">CO</span><div style="text-align:right"><span class="gchart-val">&mdash;</span><br><span class="gchart-lim">Baku Mutu: 625 mg/Nm&sup3;</span></div></div><div class="gchart-body"><canvas id="gChartCO"></canvas></div></div>
+          <div class="gchart-card"><div class="gchart-header"><span class="gchart-title">SO&#8322;</span><div style="text-align:right"><span class="gchart-val">&mdash;</span><br><span class="gchart-lim">Baku Mutu: 210 mg/Nm&sup3;</span></div></div><div class="gchart-body"><canvas id="gChartSO2"></canvas></div></div>
+          <div class="gchart-card"><div class="gchart-header"><span class="gchart-title">NO&#8339;</span><div style="text-align:right"><span class="gchart-val">&mdash;</span><br><span class="gchart-lim">Baku Mutu: 470 mg/Nm&sup3;</span></div></div><div class="gchart-body"><canvas id="gChartNOx"></canvas></div></div>
+          <div class="gchart-card"><div class="gchart-header"><span class="gchart-title">Total Partikulat</span><div style="text-align:right"><span class="gchart-val">&mdash;</span><br><span class="gchart-lim">Baku Mutu: 120 mg/Nm&sup3;</span></div></div><div class="gchart-body"><canvas id="gChartPM"></canvas></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="onboard-modal" id="onboardModal" style="display:none">
+  <div class="onboard-card">
+    <div class="onboard-header">
+      <div class="onboard-logo-row">
+        <div class="onboard-logo-icon"><i data-lucide="activity"></i></div>
+        <div>
+          <div class="onboard-logo-text">CEMS</div>
+          <div class="onboard-logo-sub">Continuous Emission Monitoring System</div>
+        </div>
+      </div>
+      <div class="onboard-title">Selamat datang di Dashboard Emisi Insinerator 👋</div>
+      <div class="onboard-desc">Sistem ini memantau kadar gas buang insinerator secara real-time dan membandingkannya dengan baku mutu PermenLHK No. 70 Tahun 2016. Menu navigasi seperti Dashboard, Report, Alert Otomatis, dan Tentang Insinerator dapat dibuka melalui ikon menu (☰) di pojok kiri atas.</div>
+    </div>
+    <div class="onboard-grid">
+      <div class="onboard-item">
+        <div class="onboard-item-icon green"><i data-lucide="layout-dashboard"></i></div>
+        <div class="onboard-item-title">Dashboard</div>
+        <div class="onboard-item-desc">Pantau nilai PM, CO, SO₂, dan NOₓ secara real-time. Grafik diperbarui otomatis setiap menit selama pembakaran aktif.</div>
+      </div>
+      <div class="onboard-item">
+        <div class="onboard-item-icon"><i data-lucide="file-bar-chart"></i></div>
+        <div class="onboard-item-title">Report</div>
+        <div class="onboard-item-desc">Lihat histori grafik per siklus pembakaran, cari data di tabel, dan unduh laporan PDF atau CSV sesuai periode yang diinginkan.</div>
+      </div>
+      <div class="onboard-item">
+        <div class="onboard-item-icon yellow"><i data-lucide="bell"></i></div>
+        <div class="onboard-item-title">Alert Otomatis</div>
+        <div class="onboard-item-desc">Banner merah dan notifikasi muncul otomatis bila ada parameter yang melampaui baku mutu. Akumulasi pelanggaran juga tercatat.</div>
+      </div>
+      <div class="onboard-item">
+        <div class="onboard-item-icon red"><i data-lucide="info"></i></div>
+        <div class="onboard-item-title">Tentang Insinerator</div>
+        <div class="onboard-item-desc">Pelajari cara kerja insinerator dan bahaya masing-masing parameter gas yang dipantau sistem ini.</div>
+      </div>
+    </div>
+    <div class="onboard-note">
+      💡 Grafik di Dashboard hanya menampilkan data siklus pembakaran yang sedang berjalan. Untuk melihat histori hari sebelumnya, buka halaman <strong>Report</strong>.
+    </div>
+    <div class="onboard-actions">
+      <button class="onboard-btn-secondary" id="onboardBtnSkip">Lewati</button>
+      <button class="onboard-btn-primary" id="onboardBtnStart">
+        <i data-lucide="arrow-right"></i> Mulai Gunakan
+      </button>
+    </div>
+  </div>
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

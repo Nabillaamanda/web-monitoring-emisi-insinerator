@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tentang Insinerator - CEMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon"><img src="/logo.png" alt="Logo"></div>
+        <div class="sidebar-brand-text"><h1>CEMS</h1><span>Emission Monitor</span></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-label">Menu</div>
+        <a href="/" class="sidebar-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+        <a href="/report" class="sidebar-item"><i data-lucide="file-bar-chart"></i> Report</a>
+        <a href="/about" class="sidebar-item active"><i data-lucide="info"></i> Tentang Insinerator</a>
+        <a href="/contact" class="sidebar-item"><i data-lucide="phone"></i> Contact</a>
+      </nav>
+      <div class="sidebar-footer"><div class="sidebar-footer-text">CEMS v2.1<br>PP 22/2021 &middot; PermenLHK 70/2016</div></div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <main class="main">
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-toggle" onclick="toggleSidebar()"><i data-lucide="menu" style="width:18px;height:18px;color:var(--neutral-700)"></i></button>
+        <div><h1 class="header-title">Tentang Insinerator</h1><p class="header-sub">Edukasi: prinsip kerja &amp; bahaya emisi gas</p></div>
+      </div>
+      <div class="header-right">
+        <div class="clock-block"><div class="clock" id="clock">--:--:--</div><div class="date-info" id="dateInfo">&nbsp;</div></div>
+        <img src="/logo1.png" alt="Logo" class="header-logo" fetchpriority="high" width="120" height="40">
+      </div>
+    </header>
+    <div class="page about-page active">
+      <div class="about-scroll">
+
+        <div class="about-card">
+          <h2><i data-lucide="flame"></i> Apa itu Insinerator?</h2>
+          <p>Insinerator adalah fasilitas pembakaran terkendali yang digunakan untuk mengolah limbah (padat, cair, maupun medis) pada suhu tinggi, umumnya 850&ndash;1200&deg;C, sehingga volume dan massa limbah berkurang signifikan serta patogen/zat berbahaya di dalamnya hancur. Insinerator banyak digunakan di rumah sakit, industri, dan fasilitas pengolahan limbah untuk mengurangi volume limbah sekaligus meminimalkan dampak lingkungan dibanding metode pembuangan langsung (landfill).</p>
+        </div>
+
+        <div class="about-card">
+          <h2><i data-lucide="settings-2"></i> Prinsip Kerja</h2>
+          <ol class="about-steps">
+            <li><strong>Pemilihan Limbah (Waste Sorting)</strong> &mdash; Limbah dipilah untuk memisahkan material yang masih dapat didaur ulang dan memastikan limbah yang akan dibakar memenuhi karakteristik yang sesuai untuk proses insinerasi.</li>
+            <li><strong>Pengumpanan (Feeding)</strong> &mdash; Limbah dimasukkan ke dalam ruang bakar (combustion chamber) secara bertahap atau kontinu sesuai kapasitas insinerator.</li>
+            <li><strong>Pembakaran (Combustion)</strong> &mdash; Limbah dibakar pada suhu tinggi sehingga menghasilkan energi panas, gas buang, dan residu berupa abu.</li>
+            <li><strong>Pengendalian Emisi</strong> &mdash; gas buang melewati sistem pengendalian pencemar udara (APCD &mdash; Air Pollution Control Device), seperti scrubber atau filter, untuk menurunkan kadar partikulat dan gas berbahaya sebelum dilepas ke cerobong.</li>
+            <li><strong>Pemantauan Emisi (CEMS)</strong> &mdash; gas buang yang keluar dari cerobong dipantau secara kontinu (itulah fungsi sistem dashboard ini) untuk memastikan kadar emisi tetap berada dalam baku mutu yang diatur regulasi.</li>
+          </ol>
+        </div>
+
+        <div class="about-card">
+          <h2><i data-lucide="alert-triangle"></i> Bahaya Parameter Gas yang Dipantau</h2>
+          <p class="about-intro">Sistem ini memantau empat parameter emisi sesuai PermenLHK No. 70/2016, masing-masing memiliki risiko kesehatan dan lingkungan berbeda:</p>
+
+          <div class="about-gas-grid">
+            <div class="about-gas-card">
+              <div class="about-gas-title">Total Partikulat (PM)</div>
+              <p>Partikel padat/cair halus hasil pembakaran tidak sempurna. Bila terhirup, partikel berukuran sangat kecil dapat masuk jauh ke saluran pernapasan hingga paru-paru, memicu gangguan pernapasan kronis, memperburuk asma, dan meningkatkan risiko penyakit kardiovaskular pada pemaparan jangka panjang.</p>
+            </div>
+            <div class="about-gas-card">
+              <div class="about-gas-title">CO (Karbon Monoksida)</div>
+              <p>Gas tidak berwarna dan tidak berbau, terbentuk dari pembakaran tidak sempurna. CO mengikat hemoglobin darah lebih kuat daripada oksigen, sehingga mengurangi kemampuan darah mengangkut oksigen ke jaringan tubuh &mdash; menyebabkan pusing, lemas, hingga keracunan fatal pada konsentrasi tinggi.</p>
+            </div>
+            <div class="about-gas-card">
+              <div class="about-gas-title">SO&#8322; (Sulfur Dioksida)</div>
+              <p>Gas dengan bau menyengat, terbentuk dari pembakaran bahan yang mengandung sulfur. SO&#8322; mengiritasi saluran pernapasan dan mata, memicu sesak napas dan memperburuk kondisi penderita asma/bronkitis, serta berkontribusi pada pembentukan hujan asam di lingkungan.</p>
+            </div>
+            <div class="about-gas-card">
+              <div class="about-gas-title">NO&#8339; (Oksida Nitrogen)</div>
+              <p>Gas hasil reaksi nitrogen dan oksigen pada suhu pembakaran tinggi. NO&#8339; dapat mengiritasi saluran pernapasan, menurunkan fungsi paru-paru pada pemaparan berulang, dan berperan dalam pembentukan ozon troposfer serta hujan asam.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card">
+          <h2><i data-lucide="shield-check"></i> Mengapa Pemantauan Penting?</h2>
+          <p>Pemantauan emisi kontinu (CEMS) memastikan operasional insinerator tetap berada dalam batas baku mutu yang ditetapkan regulasi (PermenLHK No. 70/2016), sehingga risiko terhadap kesehatan masyarakat sekitar dan lingkungan dapat dideteksi secara dini dan ditindaklanjuti sebelum menimbulkan dampak yang lebih besar.</p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="script.js"></script>
+</body>
+</html>

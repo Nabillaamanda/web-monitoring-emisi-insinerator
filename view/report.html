@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report - CEMS Insinerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon"><img src="/logo.png" alt="Logo"></div>
+        <div class="sidebar-brand-text"><h1>CEMS</h1><span>Emission Monitor</span></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-label">Menu</div>
+        <a href="/" class="sidebar-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+        <a href="/report" class="sidebar-item active"><i data-lucide="file-bar-chart"></i> Report</a>
+        <a href="/about" class="sidebar-item"><i data-lucide="info"></i> Tentang Insinerator</a>
+        <a href="/contact" class="sidebar-item"><i data-lucide="phone"></i> Contact</a>
+        
+      </nav>
+      <div class="sidebar-footer"><div class="sidebar-footer-text">CEMS v2.1<br>PP 22/2021 · PermenLHK 70/2016</div></div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <main class="main">
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-toggle" onclick="toggleSidebar()"><i data-lucide="menu" style="width:18px;height:18px;color:var(--neutral-700)"></i></button>
+        <div><h1 class="header-title">Dashboard Monitoring Emisi Insinerator</h1><p class="header-sub">Laporan Emisi Insinerator</p></div>
+      </div>
+      <div class="header-right">
+        <div class="status-pill active-burn"><div class="status-dot"></div><span>Pembakaran Aktif</span></div>
+        <div class="clock-block"><div class="clock" id="clock">15:30</div><div class="date-info" id="dateInfo">Kamis, 25 Juni 2026</div></div>
+        <img src="/logo1.png" alt="Logo" class="header-logo" fetchpriority="high" width="120" height="40">
+      </div>
+    </header>
+    <div class="page report-page active">
+      <div class="download-section">
+        <div class="download-section-title">Download Report</div>
+        <div class="dl-field"><label>Jenis Report</label><select id="r_type"><option>Report Bulanan</option><option>Report Harian</option></select></div>
+        <div class="dl-field"><label>Pilih Bulan</label><select id="r_bulan">
+          <option value="1">Januari 2026</option>
+          <option value="2">Februari 2026</option>
+          <option value="3">Maret 2026</option>
+          <option value="4">April 2026</option>
+          <option value="5">Mei 2026</option>
+          <option value="6" selected>Juni 2026</option>
+          <option value="7">Juli 2026</option>
+          <option value="8">Agustus 2026</option>
+          <option value="9">September 2026</option>
+          <option value="10">Oktober 2026</option>
+          <option value="11">November 2026</option>
+          <option value="12">Desember 2026</option>
+        </select></div>
+        <div class="dl-field"><label>Pilih Tanggal</label><input id="r_date" type="date" value="2026-06-25"></div>
+        <div class="dl-field"><label>Parameter Emisi</label><select id="r_params"><option value="pm,co,so2,nox">Semua Parameter</option><option value="pm">Total Partikulat (PM)</option><option value="so2">SO₂</option><option value="nox">NOₓ</option><option value="co">CO</option></select></div>
+        <div class="dl-field"><label>Format</label><select id="r_format"><option value="pdf">PDF</option><option value="csv">CSV</option></select></div>
+        <button id="downloadReportBtn" class="dl-btn"><i data-lucide="download"></i> Download</button>
+      </div>
+      <div class="report-section-title cycle-nav-row">
+        <span>Tren Grafik per Parameter</span>
+        <div class="cycle-nav">
+          <input type="date" id="cycleDateInput" class="table-date-input" title="Pilih tanggal">
+          <button id="cyclePrevBtn" class="cycle-nav-btn" title="Siklus sebelumnya"><i data-lucide="chevron-left"></i></button>
+          <span id="cycleLabel" class="cycle-label">Memuat...</span>
+          <button id="cycleNextBtn" class="cycle-nav-btn" title="Siklus selanjutnya"><i data-lucide="chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="report-charts-grid">
+        <div class="report-chart-card"><div class="report-chart-header"><span class="report-chart-title">CO</span><div style="text-align:right"><span class="report-chart-val">&mdash;</span><br><span class="report-chart-lim">Baku Mutu: 625 mg/Nm&sup3;</span></div></div><div class="report-chart-body"><canvas id="rChartCO"></canvas></div></div>
+        <div class="report-chart-card"><div class="report-chart-header"><span class="report-chart-title">SO&#8322;</span><div style="text-align:right"><span class="report-chart-val">&mdash;</span><br><span class="report-chart-lim">Baku Mutu: 210 mg/Nm&sup3;</span></div></div><div class="report-chart-body"><canvas id="rChartSO2"></canvas></div></div>
+        <div class="report-chart-card"><div class="report-chart-header"><span class="report-chart-title">NO&#8339;</span><div style="text-align:right"><span class="report-chart-val">&mdash;</span><br><span class="report-chart-lim">Baku Mutu: 470 mg/Nm&sup3;</span></div></div><div class="report-chart-body"><canvas id="rChartNOx"></canvas></div></div>
+        <div class="report-chart-card"><div class="report-chart-header"><span class="report-chart-title">Total Partikulat</span><div style="text-align:right"><span class="report-chart-val">&mdash;</span><br><span class="report-chart-lim">Baku Mutu: 120 mg/Nm&sup3;</span></div></div><div class="report-chart-body"><canvas id="rChartPM"></canvas></div></div>
+      </div>
+      <div class="report-section-title table-title-row" style="margin-top:0.6vw">
+        <span>Tabel Emisi</span>
+        <div class="table-search-wrap">
+          <i data-lucide="search"></i>
+          <input type="text" id="tableSearchInput" placeholder="Cari di tabel...">
+        </div>
+      </div>
+      <div class="report-table-wrap">
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Tanggal</th><th>Waktu</th><th>PM (mg/Nm³)</th><th>SO₂ (mg/Nm³)</th><th>NOₓ (mg/Nm³)</th><th>CO (mg/Nm³)</th><th>Status</th></tr></thead>
+            <tbody id="tbody">
+              <tr><td colspan="7" style="text-align:center;color:var(--neutral-500)">Memuat data...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

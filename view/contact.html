@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - CEMS Insinerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon"><img src="/logo.png" alt="Logo"></div>
+        <div class="sidebar-brand-text"><h1>CEMS</h1><span>Emission Monitor</span></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-label">Menu</div>
+        <a href="/" class="sidebar-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+        <a href="/report" class="sidebar-item"><i data-lucide="file-bar-chart"></i> Report</a>
+        <a href="/about" class="sidebar-item"><i data-lucide="info"></i> Tentang Insinerator</a>
+        <a href="/contact" class="sidebar-item active"><i data-lucide="phone"></i> Contact</a>
+      </nav>
+      <div class="sidebar-footer"><div class="sidebar-footer-text">CEMS v2.1<br>PP 22/2021 &middot; PermenLHK 70/2016</div></div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <main class="main">
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-toggle" onclick="toggleSidebar()"><i data-lucide="menu" style="width:18px;height:18px;color:var(--neutral-700)"></i></button>
+        <div><h1 class="header-title">Contact</h1><p class="header-sub">Hubungi pengelola sistem monitoring emisi</p></div>
+      </div>
+      <div class="header-right">
+        <div class="clock-block"><div class="clock" id="clock">--:--:--</div><div class="date-info" id="dateInfo">&nbsp;</div></div>
+       <img src="/logo1.png" alt="Logo" class="header-logo" fetchpriority="high" width="120" height="40">
+      </div>
+    </header>
+    <div class="page contact-page active">
+      <div class="contact-card">
+        <h2>Informasi Kontak</h2>
+        <div class="contact-row"><i data-lucide="user"></i><div><strong>Penanggung Jawab</strong><br>Nama Penanggung Jawab</div></div>
+        <div class="contact-row"><i data-lucide="mail"></i><div><strong>Email</strong><br>email@contoh.ac.id</div></div>
+        <div class="contact-row"><i data-lucide="phone"></i><div><strong>Telepon</strong><br>+62 812-0000-0000</div></div>
+        <div class="contact-row"><i data-lucide="map-pin"></i><div><strong>Lokasi</strong><br>Fasilitas Insinerator, Universitas Gadjah Mada</div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="script.js"></script>
+</body>
+</html>
